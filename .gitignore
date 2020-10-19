@@ -1,0 +1,8 @@
+# IDE
+.idea/
+
+# virtual environment
+venv/
+
+# Django
+db.sqlite3
