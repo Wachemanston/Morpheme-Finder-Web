@@ -7,3 +7,10 @@ venv/
 # Django
 db.sqlite3
 __pycache__/
+
+# node
+node_modules/
+package-lock.json
+
+# bundle file
+*.bundle.js
