@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, .container {
+    width: 100%;
+    height: 100%;
+}
+
+.slideContainer {
+    width: 100%;
+    height: 90%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slideSubContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    transition: all .3s;
+}
+
+.slidePage {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.formContainer {
+    height: 10%;
+    padding: 0 1rem;
+}
