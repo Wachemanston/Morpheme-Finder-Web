@@ -5,11 +5,20 @@ import styles from './index.css';
 
 window.onload = () => {
   ReactDOM.render(
+    <Main/>,
+    window.document.getElementById('root'),
+  );
+};
+
+const Main = () => {
+  const [keyword, setKeyword] = React.useState('');
+  const [inputText, setInputText] = React.useState('');
+  return (
     <Section>
       <Grid container xs={12} className={styles.container}>
         <Grid container item xs={12} className={styles.slideContainer}>
           <Slider />
-          <ResultPanel query="forward"/>
+          <ResultPanel query={keyword}/>
         </Grid>
         <Grid container item xs={12} justify="center" alignItems="center" className={styles.formContainer}>
           <Grid container item xs={12} md={8} justify="center" alignItems="center">
@@ -19,10 +28,11 @@ window.onload = () => {
               fullWidth
               margin="dense"
               variant="outlined"
+              onChange={({ target }) => setInputText(target.value)}
             />
           </Grid>
           <Grid container item xs={12} md={2} justify="center" alignItems="center">
-            <Button variant="contained" color="secondary" size="large">
+            <Button variant="contained" color="secondary" size="large" onClick={() => setKeyword(inputText)}>
               Submit
             </Button>
           </Grid>
@@ -33,8 +43,7 @@ window.onload = () => {
           </Grid>
         </Grid>
       </Grid>
-    </Section>,
-    window.document.getElementById('root'),
+    </Section>
   );
 };
 
@@ -65,14 +74,16 @@ const Section = ({ children }) => {
 
 const ResultPanel = ({ query }) => {
   const [isShow, setShowResult] = React.useState(true);
-  const [result, setResult] = React.useState('No results.');
-  fetch(`http://127.0.0.1:8000/q/?word=${query}`, {
-    method: 'GET',
-  })
-  .then(response => response.text())
-  .then(data => {
-    setResult(data)
-  });
+  const [result, setResult] = React.useState( 'No results.');
+  if (query.length) {
+    fetch(`http://127.0.0.1:8000/q/?word=${query}`, {
+      method: 'GET',
+    })
+    .then(response => response.text())
+    .then(data => {
+      setResult(data)
+    });
+  }
   return (
     <div className={`${styles.results} ${isShow ? '' : styles.hidePanel}`}>
       <Paper elevation={3}>
