@@ -31,6 +31,7 @@
   "dependencies": {
     "prop-types": "15.7.2",
     "react": "16.10.0",
-    "react-dom": "16.9.0"
+    "react-dom": "16.9.0",
+    "@material-ui/core": "4.9.9"
   }
 }
