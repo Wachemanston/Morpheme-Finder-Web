@@ -46,11 +46,11 @@ const Slider = () => {
   return (
     <Grid container item xs={12} className={styles.slideContainer}>
       <div className={styles.slideSubContainer} style={{ transform: `translateX(${-slideIdx * 100}%)` }}>
-        <div className={styles.slidePage}>1</div>
-        <div className={styles.slidePage}>2</div>
-        <div className={styles.slidePage}>3</div>
-        <div className={styles.slidePage}>4</div>
-        <div className={styles.slidePage}>5</div>
+        <SlidePage/>
+        <SlidePage/>
+        <SlidePage/>
+        <SlidePage/>
+        <SlidePage/>
       </div>
     </Grid>
   );
@@ -60,4 +60,12 @@ const Section = ({ children }) => {
   return (
     <section className={styles.container}>{ children }</section>
   )
+};
+
+const SlidePage = () => {
+  return (
+    <div className={styles.slidePage}>
+      <img src="https://linggle.com/static/img/linggle-logo.png" alt=""/>
+    </div>
+  );
 };
