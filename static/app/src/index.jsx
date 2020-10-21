@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Grid, TextField } from '@material-ui/core';
+import { Button, Grid, Paper, TextField } from '@material-ui/core';
 import styles from './index.css';
 
 window.onload = () => {
   ReactDOM.render(
     <Section>
       <Grid container xs={12} className={styles.container}>
-        <Slider />
+        <Grid container item xs={12} className={styles.slideContainer}>
+          <Slider />
+          <ResultPanel/>
+        </Grid>
         <Grid container item xs={12} justify="center" alignItems="center" className={styles.formContainer}>
           <Grid container item xs={12} md={8} justify="center" alignItems="center">
             <TextField
@@ -44,15 +47,13 @@ const Slider = () => {
   });
 
   return (
-    <Grid container item xs={12} className={styles.slideContainer}>
-      <div className={styles.slideSubContainer} style={{ transform: `translateX(${-slideIdx * 100}%)` }}>
-        <SlidePage/>
-        <SlidePage/>
-        <SlidePage/>
-        <SlidePage/>
-        <SlidePage/>
-      </div>
-    </Grid>
+    <div className={styles.slideSubContainer} style={{ transform: `translateX(${-slideIdx * 100}%)` }}>
+      <SlidePage/>
+      <SlidePage/>
+      <SlidePage/>
+      <SlidePage/>
+      <SlidePage/>
+    </div>
   );
 };
 
@@ -60,6 +61,17 @@ const Section = ({ children }) => {
   return (
     <section className={styles.container}>{ children }</section>
   )
+};
+
+const ResultPanel = () => {
+  const [isShow, setShowResult] = React.useState(true);
+  return (
+    <div className={`${styles.results} ${isShow ? '' : styles.hidePanel}`}>
+      <Paper elevation={3}>
+        <div className={styles.panelContent}>result</div>
+      </Paper>
+    </div>
+  );
 };
 
 const SlidePage = () => {
