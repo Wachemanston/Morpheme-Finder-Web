@@ -9,7 +9,7 @@ window.onload = () => {
       <Grid container xs={12} className={styles.container}>
         <Grid container item xs={12} className={styles.slideContainer}>
           <Slider />
-          <ResultPanel/>
+          <ResultPanel query="forward"/>
         </Grid>
         <Grid container item xs={12} justify="center" alignItems="center" className={styles.formContainer}>
           <Grid container item xs={12} md={8} justify="center" alignItems="center">
@@ -63,12 +63,20 @@ const Section = ({ children }) => {
   )
 };
 
-const ResultPanel = () => {
+const ResultPanel = ({ query }) => {
   const [isShow, setShowResult] = React.useState(true);
+  const [result, setResult] = React.useState('No results.');
+  fetch(`http://127.0.0.1:8000/q/?word=${query}`, {
+    method: 'GET',
+  })
+  .then(response => response.text())
+  .then(data => {
+    setResult(data)
+  });
   return (
     <div className={`${styles.results} ${isShow ? '' : styles.hidePanel}`}>
       <Paper elevation={3}>
-        <div className={styles.panelContent}>result</div>
+        <div className={styles.panelContent}>{result}</div>
       </Paper>
     </div>
   );
